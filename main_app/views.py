@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import Mouse
+import uuid
+import boto3
+
 
 # Create your views here.
 def home(request):

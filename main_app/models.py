@@ -18,7 +18,7 @@ class Mouse(models.Model):
 
 # Add new Feeding model below Cat model
 class Feeding(models.Model):
-  date = models.DateField()
+  date = models.DateField("Feeding Date")
   meal = models.CharField(
     max_length=1,
     # add the 'choices' field option
@@ -36,6 +36,13 @@ class Feeding(models.Model):
     return f"{self.get_meal_display()} on {self.date}"
 
 
+# AWS Photo stuff
+class Photo(models.Model):
+  url = models.CharField(max_length=200)
+  mouse = models.ForeignKey(Mouse, on_delete=models.CASCADE)
 
+
+  def __str__(self):
+    return f" Photo for mouse_id: {self.mouse_id} @{self.url} "
 
 
