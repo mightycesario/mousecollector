@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Mouse List</h1>
+
+{% for mouse in mice %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ mouse.name }}</span>
+      <p>Breed: {{ mouse.breed }}</p>
+      <p>Description: {{ mouse.description }}</p>
+      {% if mouse.age > 0 %}
+        <p>Age: {{ mouse.age }}</p>
+      {% else %}
+        <p>Age: Pup</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
