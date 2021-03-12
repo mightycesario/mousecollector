@@ -9,4 +9,10 @@ def about(request):
   return render(request, "about.html")
 
 def mice_index(request):
+  mice = Mouse.objects.all()
   return render(request, "mice/index.html", { "mice": mice })
+
+
+def mice_detail(request, id):
+  mouse = Mouse.objects.get(id=id)
+  return render(request, "mice/detail.html", { "mouse": mouse })  
