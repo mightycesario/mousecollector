@@ -1,20 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
-
-# create the mouse class 
-class Mouse:
-  def __init__(self, name, species, description, age):
-    self.name = name
-    self.species = species
-    self.description = description
-    self.age = age
-
-mice = [
-  Mouse("Eek", "white mouse", "chubby yet fast white mouse with brown spots", 2),
-  Mouse("Phoebe", "house mouse", "loud and likes to run around", 1),
-  Mouse("Cheeks", "deer mouse", "small and quiet", 4)
-]
+from .models import Mouse
 
 # Create your views here.
 def home(request):
