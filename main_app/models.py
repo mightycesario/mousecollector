@@ -9,10 +9,10 @@ MEALS = (
 
 # Create your models here.
 class Mouse(models.Model):
-    name = models.CharField(max_length=100)
-    species = models.CharField(max_length=100)
-    description = models.TextField(max_length=250)
-    age = models.IntegerField()
+  name = models.CharField(max_length=100)
+  species = models.CharField(max_length=100)
+  description = models.TextField(max_length=250)
+  age = models.IntegerField()
 
 
 
@@ -27,7 +27,7 @@ class Feeding(models.Model):
     default=MEALS[0][0]
   )
 
-  # Create a cat_id FK
+  # Create a cat_id FK (this creates the association)
   mouse = models.ForeignKey(Mouse, on_delete=models.CASCADE)
   #  ForeignKey = one to many relationship
 
