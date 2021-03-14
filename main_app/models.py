@@ -7,12 +7,22 @@ MEALS = (
     ('D', 'Dinner')
 )
 
+
+class Toy(models.Model):
+  name = models.CharField(max_length=50),
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+      return self.name
+
 # Create your models here.
 class Mouse(models.Model):
   name = models.CharField(max_length=100)
   species = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
   age = models.IntegerField()
+  # adds the many to many association
+  toys = models.ManyToManyField(Toy)
 
 
 
@@ -40,12 +50,6 @@ class Feeding(models.Model):
     ordering = ["-date"]
 
 
-class Toy(models.Model):
-  name = models.CharField(max_length=50),
-  color = models.CharField(max_length=20)
-
-  def __str__(self):
-      return self.name
   
 
 
