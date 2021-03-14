@@ -23,11 +23,12 @@ class Feeding(models.Model):
     max_length=1,
     # add the 'choices' field option
     choices=MEALS,
-    # set the default value for meal to be 'B'
-    default=MEALS[0][0]
+    # set the default value for meal to be 'L'
+    default=MEALS[0][1]
   )
 
   # Create a cat_id FK (this creates the association)
+  # and handles deleting eals when a mouse is deleted from the DB
   mouse = models.ForeignKey(Mouse, on_delete=models.CASCADE)
   #  ForeignKey = one to many relationship
 
