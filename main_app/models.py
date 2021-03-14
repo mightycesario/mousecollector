@@ -36,6 +36,19 @@ class Feeding(models.Model):
     # Nice method for obtaining the friendly value of a Field.choice
     return f"{self.get_meal_display()} on {self.date}"
 
+  class Meta:
+    ordering = ["-date"]
+
+
+class Toy(models.Model):
+  name = models.CharField(max_length=50),
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+      return self.name
+  
+
+
 
 # AWS Photo stuff
 class Photo(models.Model):

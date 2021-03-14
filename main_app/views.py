@@ -63,8 +63,11 @@ def add_feeding(request, mouse_id):
   if form.is_valid():
     # dont save the form to the db until it
     # has the mouse_id assgined
+    # create an instance of the feeding but doesnt save to db
     new_feeding = form.save(commit=False)
+    # add mouse id to the feeding
     new_feeding.mouse_id = mouse_id
+    # save the feeding to the db
     new_feeding.save()
   # using redirect instead of render 
   # if data has been changed in the database.
