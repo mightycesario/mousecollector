@@ -9,11 +9,12 @@ MEALS = (
 
 
 class Toy(models.Model):
-  name = models.CharField(max_length=50),
+  name = models.CharField(max_length=50, default="")
   color = models.CharField(max_length=20)
 
   def __str__(self):
       return self.name
+
 
 # Create your models here.
 class Mouse(models.Model):
@@ -22,7 +23,7 @@ class Mouse(models.Model):
   description = models.TextField(max_length=250)
   age = models.IntegerField()
   # adds the many to many association
-  toys = models.ManyToManyField(Toy)
+  toys = models.ManyToManyField(Toy, blank=True)
 
 
 
