@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # A tuple of 2-tuples
 MEALS = (
@@ -24,6 +25,9 @@ class Mouse(models.Model):
   age = models.IntegerField()
   # adds the many to many association
   toys = models.ManyToManyField(Toy, blank=True)
+  # when user goes away we want to delete the cat 
+  # (the model that has the 'MANY' will get the foreign key ex: Mouse has 'many' toys)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 
