@@ -4,6 +4,7 @@ from .models import Mouse, Toy
 from .forms import FeedingForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 import uuid
 # import boto3
 
@@ -17,12 +18,15 @@ def home(request):
 def about(request):
   return render(request, "about.html")
 
+@login_required
 def mice_index(request):
   # helper method to get all mice from DB
-  mice = Mouse.objects.all()
+  # mice = Mouse.objects.all()
+  # line below will display only the logged in'user''s mice
+  mice = Mouse.objects.filter(user=request.user)
   return render(request, "mice/index.html", { "mice": mice })
 
-
+@login_required
 def mice_detail(request, mouse_id):
   mouse = Mouse.objects.get(id=mouse_id)
   toys_mouse_doesnt_have = Toy.objects.exclude(id__in = mouse.toys.all().values_list("id"))
@@ -36,12 +40,12 @@ def mice_detail(request, mouse_id):
   }
   return render(request, "mice/detail.html", context)  
 
-
+@login_required
 def assoc_toy(request, mouse_id, toy_id):
   Mouse.objects.get(id=mouse_id).toys.add(toy_id)
   return redirect("detail", mouse_id=mouse_id)  
   
-
+@login_required
 def add_feeding(request, mouse_id):
   form = FeedingForm(request.POST)
   # validate the form from the backend
