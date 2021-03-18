@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Mouse, Toy
 from .forms import FeedingForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 import uuid
-import boto3
+# import boto3
 
 
 
@@ -16,6 +18,7 @@ def about(request):
   return render(request, "about.html")
 
 def mice_index(request):
+  # helper method to get all mice from DB
   mice = Mouse.objects.all()
   return render(request, "mice/index.html", { "mice": mice })
 
@@ -56,7 +59,21 @@ def add_feeding(request, mouse_id):
   return redirect("detail", mouse_id=mouse_id)
 
 
-
+def signup(request):
+  error_message = ""
+  if request.method == "POST":
+    # This is how to create a "user" form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect("index")
+    else:
+      error_message = "Invalid sign up - try again"
+  form = UserCreationForm()
+  context = { "form": form, "error_message": error_message}
+  return render(request, "registration/signup.html", context)
 
 
 

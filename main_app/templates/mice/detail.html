@@ -44,7 +44,7 @@
 <!-- This is all new markup to be added just above the <script> tag -->
 <hr>
 <div class="row">
-  <div class="col s6">
+  <div class="col s6">    
     <h3>{{ mouse.name }}'s Toys</h3>
     {% if mouse.toys.count %}
       {% for toy in mouse.toys.all %}
@@ -62,6 +62,7 @@
   </div>
   <!-- Available toys will come after this line -->
   <div class="col s6">
+  <h3>Available Toys</h3>
     {% if toys.count %}
       {% for toy in toys.all %}
         <div class="card">
