@@ -1,4 +1,7 @@
 from django.db import models
+from django.urls import reverse
+from datetime import date
+# import the user
 from django.contrib.auth.models import User
 
 # A tuple of 2-tuples
