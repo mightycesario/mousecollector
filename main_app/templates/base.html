@@ -21,8 +21,13 @@
         </ul>
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'index' %} ">View all my Mice</a></li>
-          <li><a href="/admin">admin</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'index' %} ">View all my Mice</a></li>
+            <li><a href="/admin">admin</a></li>
+            <li><a href="{% url 'logout' %} ">Log out</a></li>
+          {% else %}
+            <li><a href=" {% url 'login' %} ">Log In</a></li>
+          {% endif %}            
         </ul>
       </div>
     </nav>
